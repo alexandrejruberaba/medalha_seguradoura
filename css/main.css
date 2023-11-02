@@ -31,18 +31,6 @@ header,
     padding-right: 25px;
 }
 
-/*#nav_container {
-    padding-top: 0;
-    padding-bottom: 0;
-    
-}
-
-#navbar-links {
-    display: flex;
-    align-items: center;
-}*/
-
-
 /* logomarca da empresa*/
 #logo {
     height: auto;
@@ -89,14 +77,9 @@ header,
 }
 
 /* -----seção que faz um visual em baixo de cada botão -----*/
-
 .navbar-expand-lg .navbar-nav .nav-link {
     padding: 1rem .8rem;
 }
-
-
-
-
 .main {
     margin: 0 auto;
 }
@@ -124,13 +107,13 @@ header,
     background-position: center center;
 }
 
+/* seguradouras*/
 .section:nth-child(2) {
     border-top: none;
-    height: 70vh;
+    height: 50vh;
 }
 
 /* ... Outras Seções ... */
-
 /* Rodapé */
 .footer {
     background-color: #bcb8b8;
