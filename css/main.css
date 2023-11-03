@@ -23,7 +23,6 @@ body {
     font-family: 'Inter', sans-serif;
 }
 
-/* Estilos do Cabeçalho */
 /* barra de navegação */
 header,
 .navbar {
@@ -80,6 +79,7 @@ header,
 .navbar-expand-lg .navbar-nav .nav-link {
     padding: 1rem .8rem;
 }
+
 .main {
     margin: 0 auto;
 }
@@ -92,12 +92,10 @@ header,
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
 
 /* Seção Home */
 .section:nth-child(1) {
-
     border-top: none;
     height: 70vh;
     background-image: url('https://images.unsplash.com/photo-1558898268-92ae44e7670e?auto=format&fit=crop&q=80&w=1470&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
