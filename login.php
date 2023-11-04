@@ -15,22 +15,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif (empty($senha)) {
             $mensagemErro = "Preencha sua senha";
         } else {
-            $query = "SELECT * FROM usuarios WHERE cpf = ? AND senha = ?";
+            // Consulta o banco de dados para obter o hash e o salt
+            $query = "SELECT id, senha, salt, tipo FROM usuarios WHERE cpf = ?";
             $stmt = $mysqli->prepare($query);
-            $stmt->bind_param("ss", $cpf, $senha);
+            $stmt->bind_param("s", $cpf);
             $stmt->execute();
             $result = $stmt->get_result();
 
-            if ($result) {
-                if ($result->num_rows > 0) {
-                    $mensagemSucesso = "Login bem-sucedido!";
+            if ($result && $result->num_rows > 0) {
+                $usuario = $result->fetch_assoc();
 
-                    $usuario = $result->fetch_assoc();
-
-                    $_SESSION['cpf'] = $usuario['cpf'];
+                // Verifica a senha usando password_verify()
+                if (password_verify($senha . $usuario['salt'], $usuario['senha'])) {
+                    $_SESSION['cpf'] = $cpf;
                     $_SESSION['name'] = $usuario['nome'];
 
-                    header("Location: painel.php");
+                    // Verifica o tipo de usuário e redireciona
+                    if ($usuario['tipo'] === 'admin') {
+                        header("Location: painel_admin.php");
+                    } else {
+                        header("Location: painel.php");
+                    }
+
                     exit();
                 } else {
                     $mensagemErro = "Credenciais inválidas";
@@ -52,11 +58,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Medalha Corretora de Seguros</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
     <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
     <div class="page">
+
+
+        <a href="index.html" class="home-link">
+            <i class="fas fa-home"></i>
+        </a>
+
         <form action="" method="POST" class="formLogin">
             <h1>Login</h1>
             <p>Digite os seus dados de acesso no campo abaixo.</p>
