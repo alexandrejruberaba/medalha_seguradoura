@@ -16,7 +16,15 @@ body {
     width: 100%;
     height: 100vh;
     background-color: #ffffff;
+
 }
+
+
+p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
 
 .formLogin {
     display: flex;

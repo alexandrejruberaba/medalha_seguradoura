@@ -27,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Verifica a senha usando password_verify()
                 if (password_verify($senha . $usuario['salt'], $usuario['senha'])) {
+                    // Autenticação bem-sucedida
                     $_SESSION['cpf'] = $cpf;
                     $_SESSION['name'] = $usuario['nome'];
 
@@ -39,9 +40,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                     exit();
                 } else {
+
+
                     $mensagemErro = "Credenciais inválidas";
                 }
             } else {
+
                 $mensagemErro = "Erro na consulta: " . $mysqli->error;
             }
 
@@ -49,6 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="page">
 
+        <p>Sign in to your account to continue</p>
+        <p class="error-message" id="error-message"></p>
 
         <a href="index.html" class="home-link">
             <i class="fas fa-home"></i>
@@ -83,8 +91,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="/">Esqueci minha senha</a>
             <input type="submit" value="Acessar" class="btn" />
         </form>
+
+        <script src="/js/login.js"></script>
+
+
+        <?php if (!empty($mensagemErro)) {
+            echo "<script>
+            exibirMensagemErro('" . $mensagemErro . "');
+        </script>";
+        } ?>
+
     </div>
-    <script defer src="js/login.js"></script>
+
 </body>
 
 </html>
