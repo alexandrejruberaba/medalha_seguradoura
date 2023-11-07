@@ -23,7 +23,7 @@
 
 
     <!--css-->
-    <link rel="stylesheet" href="./main/main.css">
+    <link rel="stylesheet" href="main/main.css">
 
 
 </head>
@@ -31,22 +31,25 @@
 <body>
     <header>
         <?php include('./main/main_menu.php') ?>
+
     </header>
 
 
     <main class="main">
 
-        <!--arquivo principal com as sessoes-->
         <?php include('./main/sessoes.php') ?>
 
-        <!--rodapé-->
+
         <footer class="footer">
             <?php include('./main/main_footer.php') ?>
         </footer>
 
 
-        <!--java script funcionamento menu-->
-        <script defer src="./main/main.js"></script>
+
+        <!--java script-->
+        <script defer src="/main/main.js"></script>
+
+
 
 
 </body>

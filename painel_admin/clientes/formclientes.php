@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
     <!-- Adicione o jQuery CDN -->
@@ -9,7 +9,7 @@
     <!-- Inclua o jQuery Mask -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <?php include('header.php') ?>
+    <?php include('../header.php') ?>
 
 </head>
 
@@ -18,10 +18,10 @@
 
 
     <div class="wrapper">
-        <?php include('menu.php') ?>
+        <?php include('../menu.php') ?>
 
         <div class="main">
-            <?php include('topo.php') ?>
+            <?php include('../topo.php') ?>
 
             <!-- Corpo principal --->
             <main class="content">
@@ -152,7 +152,7 @@
             </main>
 
             <footer class="footer">
-                <?php include('footer.php') ?>
+                <?php include('../footer.php') ?>
             </footer>
         </div>
     </div>
@@ -160,10 +160,10 @@
     <script src="js/app.js"></script>
 
     <!---busca cep-->
-    <script src="js/cep.js"></script>
+    <script src="cep.js"></script>
 
     <!---cria máscara campos-->
-    <script src="js/mascara_cliente.js"></script>
+    <script src="mascara_cliente.js"></script>
 
 </body>
 

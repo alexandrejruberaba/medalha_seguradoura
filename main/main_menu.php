@@ -1,9 +1,9 @@
 <div class="container" id="nav_container">
     <nav class="navbar navbar-expand-lg fixed-top">
         <a href="#" class="navbar-brand">
-            <img id="logo" src="./main/img/mlogo.png" alt="medalha seguros">
+            <img id="logo" src="../main/img/mlogo.png" alt="medalha seguros">
         </a>
-        <!--botão que servirá para mobile-->
+        <!-- botão que servirá para mobile -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-links" aria-controls="navbar-links" aria-expanded="false" area-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
