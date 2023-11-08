@@ -1,10 +1,14 @@
+<?php include('../login/protect.php') ?>
+
 <!DOCTYPE html>
 <html lang="pt">
 
 <head>
+
 	<?php include('header.php') ?>
 	<!-- Adicione o jQuery CDN -->
 	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 </head>
 
 <body>
