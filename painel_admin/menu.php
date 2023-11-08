@@ -20,6 +20,12 @@
             </li>
 
             <li class="sidebar-item">
+                <a class="sidebar-link" href="cadastrar_usuarios.php">
+                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Cadastrar Usuários</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
                 <a class="sidebar-link" href="pages-profile.html">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                 </a>
@@ -43,11 +49,7 @@
                 </a>
             </li>
 
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="cadastrar_usuarios.php">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Cadastrar Usuários</span>
-                </a>
-            </li>
+
 
             <li class="sidebar-header">Tools & Components</li>
 
