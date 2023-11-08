@@ -1,5 +1,4 @@
 <?php
-// ... (seção de conexão)
 include('../data_base/conexao.php');
 $mensagemErro = $mensagemSucesso = '';
 
@@ -29,8 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $caminho_arquivo = "./imagens/" . $nome_arquivo;
             move_uploaded_file($arquivo['tmp_name'], $caminho_arquivo);
         } else {
-            echo "Formato de arquivo não suportado.";
-            exit; // Se o formato não é suportado, encerre a execução
+            $mensagemErro = "Formato de arquivo não suportado.";
         }
     } else {
         // Se nenhum arquivo foi enviado, defina o caminho do arquivo como nulo ou vazio, dependendo dos requisitos do seu banco de dados
@@ -43,14 +41,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO clientes (cpfCnpj, nomeCompleto, email, cep, logradouro, complemento, numero, bairro, cidade, estado, telefone, celular, docpessoal) VALUES ('$cpfCnpj', '$nomeCompleto', '$email', '$cep', '$logradouro', '$complemento', $numero, '$bairro', '$cidade', '$estado', '$telefone', '$celular', '$caminho_arquivo')";
 
         if ($conexao->query($sql) === TRUE) {
-            echo "Dados inseridos com sucesso!";
+            $mensagemSucesso = "Dados inseridos com sucesso!";
         } else {
-            echo "Erro ao inserir dados: " . $conexao->error;
+            $mensagemErro = "Erro ao inserir dados: " . $conexao->error;
         }
     } else {
-        echo "Erro na conexão com o banco de dados.";
+        $mensagemErro = "Erro na conexão com o banco de dados.";
     }
 
-    // Fecha a conexão após o uso
-    $conexao->close();
+    // Saída formatada para ser exibida no formclientes.php
+    echo json_encode(array("mensagemSucesso" => $mensagemSucesso, "mensagemErro" => $mensagemErro));
 }

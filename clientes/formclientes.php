@@ -44,7 +44,7 @@
 
                                     <div class="mb-3">
                                         <label for="cpfCnpj" class="form-label">CPF/CNPJ</label>
-                                        <input type="text" class="form-control" id="cpfCnpj" name="cpfCnpj" autocomplete="off">
+                                        <input type="text" class="form-control" id="cpfCnpj" name="cpfCnpj" placeholder="Digite apenas números" autocomplete="off">
                                     </div>
 
                                     <div class="mb-3">
@@ -134,7 +134,7 @@
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="celular" class="form-label">Celular</label>
-                                                <input type="text" class="form-control" id="celular" name="celular" required autocomplete="off">
+                                                <input type="text" class="form-control" id="celular" name="celular" placeholder=" (00) 00000 0000" required autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -149,6 +149,9 @@
                                     <div class="col-12" style="text-align: left;">
                                         <button class="btn btn-primary">Enviar</button>
                                     </div>
+
+                                    <div id="alert-messages"></div>
+
                                 </form>
                             </div>
                         </div>
@@ -169,6 +172,48 @@
 
     <!---cria máscara campos-->
     <script src="mascara_cliente.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            // Função para exibir mensagens formatadas
+            function exibirMensagem(mensagem, tipo) {
+                return '<div class="alert alert-' + tipo + '" role="alert">' + mensagem + '</div>';
+            }
+
+            // Submissão do formulário
+            $("form").submit(function(event) {
+                event.preventDefault(); // Impede a submissão normal do formulário
+
+                // Envia os dados do formulário usando AJAX
+                $.ajax({
+                    type: "POST",
+                    url: "salvar_cliente.php",
+                    data: new FormData(this),
+                    contentType: false,
+                    processData: false,
+                    success: function(response) {
+                        var data = JSON.parse(response);
+
+                        // Limpa mensagens anteriores
+                        $("#alert-messages").html('');
+
+                        // Exibe as mensagens
+                        if (data.mensagemSucesso) {
+                            $("#alert-messages").append(exibirMensagem(data.mensagemSucesso, 'success'));
+
+                            // Limpa os campos do formulário
+                            $("form")[0].reset();
+                        }
+                        if (data.mensagemErro) {
+                            $("#alert-messages").append(exibirMensagem(data.mensagemErro, 'danger'));
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
 
 </body>
 
