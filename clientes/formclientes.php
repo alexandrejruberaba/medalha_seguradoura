@@ -3,23 +3,21 @@
 
 <head>
     <!-- Adicione o jQuery CDN -->
-    <!-- Inclua o jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <!-- Substitua os links do Bootstrap 4 pelos links do Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Inclua o jQuery Mask -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-
-
     <?php include('../painel_admin/header.php') ?>
     <?php include('../data_base/conexao.php') ?>
-
 
 </head>
 
 <body>
-
-
 
     <div class="wrapper">
         <?php include('../painel_admin/menu.php') ?>
@@ -32,127 +30,41 @@
                 <div class="container-fluid p-0">
                     <h1 class="h3 mb-3">Formulário Cliente</h1>
 
-                    <div class="col-6">
+                    <div class="col-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h5 class="card-title mb-0">*Dados Obrigatórios</h5>
+                            <div class="card-header text-white">
+
+                                <ul class="nav nav-pills" id="clienteTabs" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="cadastro-tab" data-bs-toggle="pill" href="#cadastro" role="tab" aria-controls="cadastro" aria-selected="true">Cadastrar</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="editar-tab" data-bs-toggle="pill" href="#editar" role="tab" aria-controls="editar" aria-selected="false">Editar/ Buscar</a>
+                                    </li>
+                                </ul>
                             </div>
 
                             <div class="card-body">
-                                <form action="salvar_cliente.php" enctype="multipart/form-data" method="post">
-
-
-                                    <div class="mb-3">
-                                        <label for="cpfCnpj" class="form-label">CPF/CNPJ</label>
-                                        <input type="text" class="form-control" id="cpfCnpj" name="cpfCnpj" placeholder="Digite apenas números" autocomplete="off">
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="cadastro">
+                                        <!-- Formulário de Cadastro -->
+                                        <form action="salvar_cliente.php" enctype="multipart/form-data" method="post">
+                                            <!-- Campos do formulário de cadastro -->
+                                            <?php include('cadstrocliente.php') ?>
+                                            <!-- ... -->
+                                        </form>
                                     </div>
 
-                                    <div class="mb-3">
-                                        <label for="nome_completo" class="form-label">Nome Completo</label>
-                                        <input type="text" class="form-control" id="nome_completo" name="nome_completo" autocomplete="off">
+                                    <div class="tab-pane fade" id="editar">
+                                        <!-- Formulário de Edição -->
+                                        <form action="editar_cliente.php" enctype="multipart/form-data" method="post">
+                                            <!-- Campos do formulário de edição -->
+                                            <!-- ... -->
+
+                                            <button class="btn btn-primary">Salvar Alterações</button>
+                                        </form>
                                     </div>
-
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" autocomplete="off">
-                                    </div>
-
-
-
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <div class="mb-3">
-                                                <label for="cep" class="form-label">Cep:</label>
-                                                <div class="input-group">
-                                                    <input type="text" class="form-control" id="cep" name="cep" maxlength="8" placeholder="ex:38080000" required autocomplete="off">
-                                                    <button class="btn btn-outline-secondary" type="button" onclick="buscarCep()">
-                                                        <i data-feather="search"></i> <!-- Ícone de pesquisa do conjunto Feather -->
-                                                    </button>
-
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-8">
-                                            <div class="mb-3">
-                                                <label for="logradouro" class="form-label">Logradouro</label>
-                                                <input type="text" class="form-control" id="logradouro" name="logradouro" required autocomplete="off">
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-
-
-                                    <div class="row">
-                                        <div class="col-9">
-                                            <div class="mb-3">
-                                                <label for="complemento" class="form-label">Complemento</label>
-                                                <input type="text" class="form-control" id="complemento" name="complemento" autocomplete="off">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-3">
-                                            <div class="mb-3">
-                                                <label for="numero" class="form-label">Nº</label>
-                                                <input type="number" class="form-control" id="numero" name="numero" required autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="bairro" class="form-label">Bairro:</label>
-                                        <input type="text" class="form-control" id="bairro" name="bairro" required autocomplete="off">
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <div class="mb-3">
-                                                <label for="cidade" class="form-label">Cidade</label>
-                                                <input type="text" class="form-control" id="cidade" name="cidade" require autocomplete="off">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-4">
-                                            <div class="mb-3">
-                                                <label for="estado" class="form-label">Estado (Sigla)</label>
-                                                <input type="text" class="form-control" id="estado" name="estado" required autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <div class="mb-3">
-                                                <label for="Telefone" class="form-label">Telefone</label>
-                                                <input type="text" class="form-control" id="telefone" name="telefone" autocomplete="off">
-                                            </div>
-                                        </div>
-
-                                        <div class="col-6">
-                                            <div class="mb-3">
-                                                <label for="celular" class="form-label">Celular</label>
-                                                <input type="text" class="form-control" id="celular" name="celular" placeholder=" (00) 00000 0000" required autocomplete="off">
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="mb-3">
-                                        <label for="formFile" class="form-label">Documento Pessoal</label>
-                                        <input class="form-control" type="file" id="formFile" name="formFile" autocomplete="off">
-                                    </div>
-
-                                    <div class="col-12" style="text-align: left;">
-                                        <button class="btn btn-primary">Enviar</button>
-                                    </div>
-
-                                    <div id="alert-messages"></div>
-
-                                </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -173,6 +85,18 @@
     <!---cria máscara campos-->
     <script src="mascara_cliente.js"></script>
 
+    <script>
+        $(document).ready(function() {
+            // Ative as abas do Bootstrap
+            var tabs = new bootstrap.Tab(document.getElementById('cadastro-tab'));
+            tabs.show();
+
+            $('#clienteTabs a').on('shown.bs.tab', function(e) {
+                // Ative a máscara do jQuery Mask quando a aba for exibida
+                $('#telefone, #celular').mask("(00) 0000-00009");
+            });
+        });
+    </script>
 
     <script>
         $(document).ready(function() {
