@@ -9,8 +9,9 @@
     <!-- Inclua o jQuery Mask -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
-    <?php include('../header.php') ?>
 
+
+    <?php include('../painel_admin/header.php') ?>
 </head>
 
 <body>
@@ -18,10 +19,10 @@
 
 
     <div class="wrapper">
-        <?php include('../menu.php') ?>
+        <?php include('../painel_admin/menu.php') ?>
 
         <div class="main">
-            <?php include('../topo.php') ?>
+            <?php include('../painel_admin/topo.php') ?>
 
             <!-- Corpo principal --->
             <main class="content">
@@ -35,11 +36,11 @@
                             </div>
 
                             <div class="card-body">
-                                <form action="salvar_cliente.php" method="post">
+                                <form action="#">
 
                                     <div class="mb-3">
                                         <label for="cpfCnpj" class="form-label">CPF/CNPJ</label>
-                                        <input type="text" class="form-control" id="cpfCnpj" placeholder="digite somente números" required autocomplete="off">
+                                        <input type="text" class="form-control" id="cpfCnpj" required autocomplete="off">
                                     </div>
 
                                     <div class="mb-3">
@@ -137,7 +138,7 @@
 
 
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">Documento Pessoal</label>
+                                        <label for="formFile" class="form-label">Default file input example</label>
                                         <input class="form-control" type="file" id="formFile" autocomplete="off">
                                     </div>
 
@@ -152,12 +153,12 @@
             </main>
 
             <footer class="footer">
-                <?php include('../footer.php') ?>
+                <?php include('../painel_admin/footer.php') ?>
             </footer>
         </div>
     </div>
 
-    <script src="js/app.js"></script>
+    <script src="/static/js/app.js"></script>
 
     <!---busca cep-->
     <script src="cep.js"></script>

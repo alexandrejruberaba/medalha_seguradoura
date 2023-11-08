@@ -1,17 +1,21 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="painel_admin.php">
+        <a class="sidebar-brand" href="/painel_admin/painel_admin.php">
             <span class="align-middle">Menu Principal</span>
         </a>
 
         <ul class="sidebar-nav">
-            <li class="sidebar-header">
-                Pages
-            </li>
+            <li class="sidebar-header">Paginas</li>
 
             <li class="sidebar-item active">
-                <a class="sidebar-link" href="fdasf">
+                <a class="sidebar-link" href="dashboard.php">
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                </a>
+            </li>
+
+            <li class="sidebar-item">
+                <a class="sidebar-link" href="/clientes/formclientes.php">
+                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Cadastrar Clientes</span>
                 </a>
             </li>
 
@@ -29,8 +33,7 @@
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="pages-sign-up.html">
-                    <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign
-                        Up</span>
+                    <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
                 </a>
             </li>
 
@@ -41,20 +44,12 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="../clientes/formclientes.php">
-                    <i class="align-middle" data-feather="book"></i> <span class="align-middle">Cadastrar Clientes</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="pages-blank.html">
+                <a class="sidebar-link" href="cadastrar_usuarios.php">
                     <i class="align-middle" data-feather="book"></i> <span class="align-middle">Cadastrar Usuários</span>
                 </a>
             </li>
 
-            <li class="sidebar-header">
-                Tools & Components
-            </li>
+            <li class="sidebar-header">Tools & Components</li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="ui-buttons.html">
@@ -86,9 +81,7 @@
                 </a>
             </li>
 
-            <li class="sidebar-header">
-                Plugins & Addons
-            </li>
+            <li class="sidebar-header">Plugins & Addons</li>
 
             <li class="sidebar-item">
                 <a class="sidebar-link" href="charts-chartjs.html">
@@ -102,7 +95,5 @@
                 </a>
             </li>
         </ul>
-
-
     </div>
 </nav>
