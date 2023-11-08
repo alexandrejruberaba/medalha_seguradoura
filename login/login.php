@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             // Consulta o banco de dados para obter o hash e o salt
             $query = "SELECT id, senha, salt, tipo FROM usuarios WHERE cpf = ?";
-            $stmt = $mysqli->prepare($query);
+            $stmt = $conexao->prepare($query);
             $stmt->bind_param("s", $cpf);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
             } else {
 
-                $mensagemErro = "Erro na consulta: " . $mysqli->error;
+                $mensagemErro = "Erro na consulta: " . $conexao->error;
             }
 
             $stmt->close();

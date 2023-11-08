@@ -12,6 +12,9 @@
 
 
     <?php include('../painel_admin/header.php') ?>
+    <?php include('../data_base/conexao.php') ?>
+
+
 </head>
 
 <body>
@@ -36,21 +39,22 @@
                             </div>
 
                             <div class="card-body">
-                                <form action="#">
+                                <form action="salvar_cliente.php" enctype="multipart/form-data" method="post">
+
 
                                     <div class="mb-3">
                                         <label for="cpfCnpj" class="form-label">CPF/CNPJ</label>
-                                        <input type="text" class="form-control" id="cpfCnpj" required autocomplete="off">
+                                        <input type="text" class="form-control" id="cpfCnpj" name="cpfCnpj" autocomplete="off">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="nome_completo" class="form-label">Nome Completo</label>
-                                        <input type="text" class="form-control" id="nome_completo" required autocomplete="off">
+                                        <input type="text" class="form-control" id="nome_completo" name="nome_completo" autocomplete="off">
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="email" placeholder="name@example.com" required autocomplete="off">
+                                        <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email" autocomplete="off">
                                     </div>
 
 
@@ -60,7 +64,7 @@
                                             <div class="mb-3">
                                                 <label for="cep" class="form-label">Cep:</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="cep" maxlength="8" placeholder="ex:38080000" required autocomplete="off">
+                                                    <input type="text" class="form-control" id="cep" name="cep" maxlength="8" placeholder="ex:38080000" required autocomplete="off">
                                                     <button class="btn btn-outline-secondary" type="button" onclick="buscarCep()">
                                                         <i data-feather="search"></i> <!-- Ícone de pesquisa do conjunto Feather -->
                                                     </button>
@@ -73,7 +77,7 @@
                                         <div class="col-8">
                                             <div class="mb-3">
                                                 <label for="logradouro" class="form-label">Logradouro</label>
-                                                <input type="text" class="form-control" id="logradouro" required autocomplete="off">
+                                                <input type="text" class="form-control" id="logradouro" name="logradouro" required autocomplete="off">
                                             </div>
                                         </div>
 
@@ -86,35 +90,35 @@
                                         <div class="col-9">
                                             <div class="mb-3">
                                                 <label for="complemento" class="form-label">Complemento</label>
-                                                <input type="text" class="form-control" id="complemento" autocomplete="off">
+                                                <input type="text" class="form-control" id="complemento" name="complemento" autocomplete="off">
                                             </div>
                                         </div>
 
                                         <div class="col-3">
                                             <div class="mb-3">
                                                 <label for="numero" class="form-label">Nº</label>
-                                                <input type="number" class="form-control" id="numero" required autocomplete="off">
+                                                <input type="number" class="form-control" id="numero" name="numero" required autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="mb-3">
                                         <label for="bairro" class="form-label">Bairro:</label>
-                                        <input type="text" class="form-control" id="bairro" required autocomplete="off">
+                                        <input type="text" class="form-control" id="bairro" name="bairro" required autocomplete="off">
                                     </div>
 
                                     <div class="row">
                                         <div class="col-8">
                                             <div class="mb-3">
                                                 <label for="cidade" class="form-label">Cidade</label>
-                                                <input type="text" class="form-control" id="cidade" require autocomplete="off">
+                                                <input type="text" class="form-control" id="cidade" name="cidade" require autocomplete="off">
                                             </div>
                                         </div>
 
                                         <div class="col-4">
                                             <div class="mb-3">
                                                 <label for="estado" class="form-label">Estado (Sigla)</label>
-                                                <input type="text" class="form-control" id="estado" required autocomplete="off">
+                                                <input type="text" class="form-control" id="estado" name="estado" required autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -123,14 +127,14 @@
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="Telefone" class="form-label">Telefone</label>
-                                                <input type="text" class="form-control" id="telefone" autocomplete="off">
+                                                <input type="text" class="form-control" id="telefone" name="telefone" autocomplete="off">
                                             </div>
                                         </div>
 
                                         <div class="col-6">
                                             <div class="mb-3">
                                                 <label for="celular" class="form-label">Celular</label>
-                                                <input type="text" class="form-control" id="celular" required autocomplete="off">
+                                                <input type="text" class="form-control" id="celular" name="celular" required autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -138,8 +142,8 @@
 
 
                                     <div class="mb-3">
-                                        <label for="formFile" class="form-label">Default file input example</label>
-                                        <input class="form-control" type="file" id="formFile" autocomplete="off">
+                                        <label for="formFile" class="form-label">Documento Pessoal</label>
+                                        <input class="form-control" type="file" id="formFile" name="formFile" autocomplete="off">
                                     </div>
 
                                     <div class="col-12" style="text-align: left;">
