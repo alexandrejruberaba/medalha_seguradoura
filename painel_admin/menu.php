@@ -14,7 +14,7 @@
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="/clientes/formclientes.php">
+                <a class="sidebar-link" href="/clientes/clientes.php">
                     <i class="align-middle" data-feather="book"></i> <span class="align-middle">Cadastrar Clientes</span>
                 </a>
             </li>
