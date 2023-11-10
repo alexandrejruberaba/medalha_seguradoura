@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $mensagemErro = "Preencha sua senha";
         } else {
             // Consulta o banco de dados para obter o hash e o salt
-            $query = "SELECT id, senha, salt, tipo FROM usuarios WHERE cpf = ?";
+            $query = "SELECT senha, salt, tipo FROM usuarios WHERE cpf = ?";
             $stmt = $conexao->prepare($query);
             $stmt->bind_param("s", $cpf);
             $stmt->execute();

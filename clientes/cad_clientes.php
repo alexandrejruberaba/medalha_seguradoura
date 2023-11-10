@@ -30,7 +30,7 @@
                         <div class="mb-3">
                             <label for="cep" class="form-label">Cep: *</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="cep" name="cep" maxlength="8" placeholder="ex:38080000" required autocomplete="off">
+                                <input type="text" class="form-control" id="cep" name="cep" maxlength="8" placeholder="Apenas números" autocomplete="off">
                                 <button class="btn btn-outline-secondary" type="button" onclick="buscarCep()">
                                     <i data-feather="search"></i> <!-- Ícone de pesquisa do conjunto Feather -->
                                 </button>

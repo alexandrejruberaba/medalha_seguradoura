@@ -1,3 +1,5 @@
+<?php include('../login/protect.php') ?>
+
 <!DOCTYPE html>
 <html lang="pt">
 
@@ -28,11 +30,11 @@
             <!-- Corpo principal --->
             <main class="content">
 
-                <div class="container-fluid p-0">
+                <div class="container-fluid  p-0">
                     <h1 class="h3 mb-3">Formulário Clientes</h1>
-                    <div class="card">
+                    <div class="card border">
                         <div class="card-header text-white">
-                            <ul class="nav nav-pilss mb-3" id="pills-tab" role="tablist">
+                            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true">Cadastrar Clientes</button>
                                 </li>
@@ -59,7 +61,10 @@
                             </div>
 
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
+
                                 <?php include('edit_clientes.php') ?>
+
+
                             </div>
 
 
@@ -112,16 +117,18 @@
 
                         // Exibe as mensagens
                         if (data.mensagemSucesso) {
-                            $("#alert-messages").append(exibirMensagem(data.mensagemSucesso, 'success'));
-
+                            $("#alert-messages").append('<div class="alert alert-success" role="alert">' + data.mensagemSucesso + '</div>');
                             // Limpa os campos do formulário
                             $("form")[0].reset();
                         }
                         if (data.mensagemErro) {
-                            $("#alert-messages").append(exibirMensagem(data.mensagemErro, 'danger'));
+                            $("#alert-messages").append('<div class="alert alert-danger" role="alert">' + data.mensagemErro + '</div>');
+                            // Limpa os campos do formulário
+                            $("form")[0].reset();
                         }
                     }
                 });
             });
+
         });
     </script>
