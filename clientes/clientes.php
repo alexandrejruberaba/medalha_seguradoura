@@ -56,17 +56,12 @@
                                 <form action="salvar_cliente.php" enctype="multipart/form-data" method="post">
                                     <!-- Formulário de Cadastro -->
                                     <?php include('cad_clientes.php') ?>
-
                                 </form>
                             </div>
 
                             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab" tabindex="0">
-
                                 <?php include('edit_clientes.php') ?>
-
-
                             </div>
-
 
                             <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab" tabindex="0">.asdfasdf..</div>
                             <div class="tab-pane fade" id="pills-disabled" role="tabpanel" aria-labelledby="pills-disabled-tab" tabindex="0">...</div>

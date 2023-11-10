@@ -31,32 +31,32 @@ $conexao->close();
 
     <div class="card border mx-auto mt-3 ms-3 me-3">
         <div class="card-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Cpf/Cnpj</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Endereço</th>
-                        <th scope="col">Celular</th>
-                        <th scope="col">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-
-                    while ($user_data = mysqli_fetch_assoc($result)) {
-                        echo "<tr>";
-                        echo "<td>" . $user_data['cpfcnpj'] . "</td>";
-                        echo "<td>" . $user_data['nomeCompleto'] . "</td>";
-                        echo "<td>" . $user_data['logradouro'] . "</td>";
-                        echo "<td>" . $user_data['celular'] . "</td>";
-                        echo "<td>ações</td>";
-                        echo "</tr>";
-                    }
-                    ?>
-
-                </tbody>
-            </table>
+            <div style="max-height: 300px; overflow-y: auto;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Cpf/Cnpj</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Endereço</th>
+                            <th scope="col">Celular</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        while ($user_data = mysqli_fetch_assoc($result)) {
+                            echo "<tr>";
+                            echo "<td>" . $user_data['cpfcnpj'] . "</td>";
+                            echo "<td>" . $user_data['nomeCompleto'] . "</td>";
+                            echo "<td>" . $user_data['logradouro'] . "</td>";
+                            echo "<td>" . $user_data['celular'] . "</td>";
+                            echo "<td>ações</td>";
+                            echo "</tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
