@@ -25,28 +25,25 @@ $conexao->close();
     <!-- DataTables JS -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
+    <style>
+        .filter-input {
+            float: right;
+            margin-right: 10px;
+        }
+
+        .dataTables_filter {
+            float: left !important;
+        }
+    </style>
 
 </head>
 
 <body>
-    <div class="container">
-        <!-- Formulário de Busca -->
-        <div class="card border mx-auto mt-3 ms-3 me-3">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="mb-3">
-                            <label for="cpfCnpj" class="form-label">* Informe o CPF/CNPJ:</label>
-                            <input type="text" id="filterInput" placeholder="Filtrar por CPF/CNPJ">
-                        </div>
-                    </div>
-                    <div class="col-4 d-flex align-items-center mt-2">
-                        <button class="btn btn-primary" onclick="buscar()">Buscar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
+
+
+
+    <div class="container">
         <!-- Tabela de Dados -->
         <div class="card border mx-auto mt-3 ms-3 me-3">
             <div class="card-body">
@@ -83,50 +80,32 @@ $conexao->close();
     </div>
 
     <script>
-        function buscar() {
-            const filterInput = document.getElementById('filterInput');
-            const filterValue = filterInput.value.toUpperCase();
-            const rows = document.querySelectorAll('tbody tr');
-
-            rows.forEach(row => {
-                const cellValue = row.cells[0].textContent || row.cells[0].innerText; // Assume que CPF/CNPJ está na primeira coluna
-                if (cellValue.toUpperCase().indexOf(filterValue) > -1) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        }
-
         // Inicializa DataTables
         $(document).ready(function() {
             // Verifica se a tabela já possui DataTable antes de inicializar
             if (!$.fn.DataTable.isDataTable('#edit_clientes')) {
                 $('#edit_clientes').DataTable({
                     responsive: true,
-                    "language": {
-                        "lengthMenu": "Mostrar _MENU_ registros por página",
-                        "zeroRecords": "Nenhum registro encontrado",
-                        "info": "Mostrando página _PAGE_ de _PAGES_",
-                        "infoEmpty": "Nenhum registro disponível",
-                        "infoFiltered": "(filtrado de _MAX_ registros no total)",
-                        "search": "Buscar:",
-                        "paginate": {
-                            "first": "Primeiro",
-                            "last": "Último",
-                            "next": "Próximo",
-                            "previous": "Anterior"
+                    dom: '<"top"f<"filter-input"i>>rt<"bottom"lp><"clear">',
+                    language: {
+                        lengthMenu: "Mostrar _MENU_ registros por página",
+                        zeroRecords: "Nenhum registro encontrado",
+                        info: "Mostrando página _PAGE_ de _PAGES_",
+                        infoEmpty: "Nenhum registro disponível",
+                        infoFiltered: "(filtrado de _MAX_ registros no total)",
+                        search: "Informe o Cpf ou Cnpj:",
+                        paginate: {
+                            first: '<i class="bi bi-chevron-double-left"></i>',
+                            last: '<i class="bi bi-chevron-double-right"></i>',
+                            next: '<i class="bi bi-chevron-right"></i>',
+                            previous: '<i class="bi bi-chevron-left"></i>'
                         }
-                    }
+                    },
+                    searching: true, // Esta opção remove a barra de pesquisa
+                    pagingType: "full_numbers" // Esta opção exibe botões de navegação
                 });
             }
         });
-
-
-
-        // Adiciona um evento de input ao campo de filtro
-        const filterInput = document.getElementById('filterInput');
-        filterInput.addEventListener('input', buscar);
     </script>
 </body>
 
