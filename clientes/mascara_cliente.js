@@ -22,15 +22,13 @@ $(document).ready(function() {
     });
 
     // Verifica se a biblioteca jQuery Mask está carregada antes de usar
-    if (typeof $.fn.mask !== 'undefined') {
-        // Máscaras para Telefone e Celular
+    if (typeof jQuery !== 'undefined' && typeof $.fn.mask !== 'undefined') {
+        // Se o jQuery e a função $.fn.mask estiverem definidos, você pode usar $.fn.mask
         $("#telefone").mask("(00) 0000-0000");
         $("#celular").mask("(00) 00000-0000");
-       
-        // Restante do código relacionado às máscaras
-        $('.date').mask('00/00/0000');
         // ... outras máscaras
     } else {
-        console.error('jQuery Mask não está carregado corretamente.');
+        console.error('jQuery ou jQuery Mask não está carregado corretamente.');
     }
+    
 });
