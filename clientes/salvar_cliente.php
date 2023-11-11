@@ -1,62 +1,53 @@
 <?php
 include('../data_base/conexao.php');
+
 $mensagemErro = $mensagemSucesso = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obter dados do formulário
     $cpfCnpj = $_POST["cpfCnpj"];
     $nomeCompleto = $_POST["nome_completo"];
-    $email = $_POST["email"];
     $cep = $_POST["cep"];
     $logradouro = $_POST["logradouro"];
-    $complemento = $_POST["complemento"];
     $numero = $_POST["numero"];
-    $bairro = $_POST["bairro"];
-    $cidade = $_POST["cidade"];
-    $estado = $_POST["estado"];
-    $telefone = $_POST["telefone"];
-    $celular = $_POST["celular"];
 
-    // Verifica se o cliente já existe no banco de dados
-    $sqlVerificar = "SELECT * FROM clientes WHERE cpfCnpj = '$cpfCnpj'";
-    $resultadoVerificar = $conexao->query($sqlVerificar);
-
-    if ($resultadoVerificar->num_rows > 0) {
-        $mensagemErro = "Cliente já cadastrado no sistema.";
+    // Verificar se todos os campos necessários estão preenchidos
+    if (empty($cpfCnpj) || empty($nomeCompleto) || empty($cep) || empty($logradouro) || empty($numero)) {
+        $mensagemErro = "Todos os campos obrigatórios devem ser preenchidos.";
     } else {
-        // Verifica se um arquivo foi enviado
-        if (isset($_FILES['formFile']) && $_FILES['formFile']['error'] == UPLOAD_ERR_OK) {
-            $arquivo = $_FILES['formFile'];
+        // Verificar se o cliente já existe
+        $sqlVerificar = "SELECT * FROM clientes WHERE cpfCnpj = '$cpfCnpj'";
+        $resultadoVerificar = $conexao->query($sqlVerificar);
 
-            // Verifica o formato do arquivo
-            preg_match("/\.(png|jpg|jpeg){1}$/i", $arquivo["name"], $ext);
-
-            if (isset($ext[1]) && in_array($ext[1], array("png", "jpg", "jpeg"))) {
-                $nome_arquivo = md5(uniqid(time())) . "." . $ext[1];
-                $caminho_arquivo = "./imagens/" . $nome_arquivo;
-                move_uploaded_file($arquivo['tmp_name'], $caminho_arquivo);
-            } else {
-                $mensagemErro = "Formato de arquivo não suportado.";
-            }
+        if ($resultadoVerificar->num_rows > 0) {
+            $mensagemErro = "Cliente já cadastrado no sistema.";
         } else {
-            // Se nenhum arquivo foi enviado, defina o caminho do arquivo como nulo ou vazio, dependendo dos requisitos do seu banco de dados
-            $caminho_arquivo = '';
-        }
+            // Restante do seu código para upload de arquivo e inserção no banco de dados
+            // ...
 
-        // Verifica se a conexão está estabelecida antes de usar
-        if ($conexao) {
-            // Ajuste necessário aqui dependendo do que você deseja inserir no banco de dados
-            $sql = "INSERT INTO clientes (cpfCnpj, nomeCompleto, email, cep, logradouro, complemento, numero, bairro, cidade, estado, telefone, celular, docpessoal) VALUES ('$cpfCnpj', '$nomeCompleto', '$email', '$cep', '$logradouro', '$complemento', $numero, '$bairro', '$cidade', '$estado', '$telefone', '$celular', '$caminho_arquivo')";
+            // Inserção no banco de dados
+            $sql = "INSERT INTO clientes (cpfCnpj, nomeCompleto, cep, logradouro, numero) VALUES ('$cpfCnpj', '$nomeCompleto', '$cep', '$logradouro', $numero)";
 
             if ($conexao->query($sql) === TRUE) {
                 $mensagemSucesso = "Dados inseridos com sucesso!";
             } else {
                 $mensagemErro = "Erro ao inserir dados: " . $conexao->error;
             }
-        } else {
-            $mensagemErro = "Erro na conexão com o banco de dados.";
         }
     }
 
+    // Cabeçalhos para indicar que estamos enviando JSON
+    header('Content-Type: application/json');
+
     // Saída formatada para ser exibida no formclientes.php
     echo json_encode(array("mensagemSucesso" => $mensagemSucesso, "mensagemErro" => $mensagemErro));
+
+    // Garante que nada mais seja executado no script após enviar a resposta JSON
+    exit();
+} else {
+    // Se o método da requisição não for POST, retorne uma mensagem de erro
+    header('Content-Type: application/json');
+    echo json_encode(array("mensagemErro" => "Método de requisição inválido."));
+    exit();
 }
+?>

@@ -105,15 +105,13 @@
                     </div>
                 </div>
 
-
-
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Documento Pessoal</label>
                     <input class="form-control" type="file" id="formFile" name="formFile" autocomplete="off">
                 </div>
 
                 <div class="col-12" style="text-align: left;">
-                    <button class="btn btn-primary">Enviar</button>
+                    <button class="btn btn-primary">Salvar</button>
                 </div>
 
                 <div class="mb-3">
