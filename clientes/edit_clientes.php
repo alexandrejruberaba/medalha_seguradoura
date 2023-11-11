@@ -15,6 +15,8 @@ $conexao->close();
 <html lang="pt-br">
 
 <head>
+
+
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap.min.css">
     <!-- DataTables CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.6/css/jquery.dataTables.css">
@@ -26,23 +28,23 @@ $conexao->close();
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
     <style>
-        .filter-input {
-            float: right;
-            margin-right: 10px;
-        }
-
         .dataTables_filter {
             float: left !important;
+        }
+
+        .dataTables_length {
+            float: right
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            margin-right: 10px;
+            /* Adicione a quantidade de espaçamento desejada */
         }
     </style>
 
 </head>
 
 <body>
-
-
-
-
     <div class="container">
         <!-- Tabela de Dados -->
         <div class="card border mx-auto mt-3 ms-3 me-3">
@@ -86,7 +88,9 @@ $conexao->close();
             if (!$.fn.DataTable.isDataTable('#edit_clientes')) {
                 $('#edit_clientes').DataTable({
                     responsive: true,
-                    dom: '<"top"f<"filter-input"i>>rt<"bottom"lp><"clear">',
+                    dom: '<"pull-left"f> <"pull-right"l>tip',
+                    /*'<"top"f<"filter-input"i>>rt<"bottom"lp><"clear">'*/
+
                     language: {
                         lengthMenu: "Mostrar _MENU_ registros por página",
                         zeroRecords: "Nenhum registro encontrado",
@@ -95,14 +99,12 @@ $conexao->close();
                         infoFiltered: "(filtrado de _MAX_ registros no total)",
                         search: "Informe o Cpf ou Cnpj:",
                         paginate: {
-                            first: '<i class="bi bi-chevron-double-left"></i>',
-                            last: '<i class="bi bi-chevron-double-right"></i>',
-                            next: '<i class="bi bi-chevron-right"></i>',
-                            previous: '<i class="bi bi-chevron-left"></i>'
+                            next: 'Próximo',
+                            previous: 'Anterior'
                         }
                     },
                     searching: true, // Esta opção remove a barra de pesquisa
-                    pagingType: "full_numbers" // Esta opção exibe botões de navegação
+                    pagingType: "simple" // Esta opção exibe botões de navegação
                 });
             }
         });
